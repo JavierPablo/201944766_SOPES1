@@ -7,13 +7,13 @@ interface Params{
 
 
 function ProcessTree({back_button}:Params){
-    const HOST = process.env.GO_HOST;
-const PORT = process.env.GO_PORT;
+    
+
     let [nodes,set_nodes] = useState([] as { id: number; label: string; }[])
     let [edges,set_edges] = useState([] as { from: number; to: number; }[])
     let [elm_list,set_elm_list] = useState([<></>])
     useEffect(() => {
-        let algo = fetch(`http://${HOST}:${PORT}/all_pids`)
+        let algo = fetch(`http://127.0.0.1:1200/all_pids`)
         algo.then((res)=>{
             res.json().then((obj)=>{
                 let options = [] 
@@ -28,7 +28,7 @@ const PORT = process.env.GO_PORT;
     
       let on_click =(event:any)=>{
         let mas = event.target.value
-        let algo = fetch(`http://${HOST}:${PORT}/process_info`,{ method:'POST', body:`{"pid":${mas}}`})
+        let algo = fetch(`http://127.0.0.1:1200/process_info`,{ method:'POST', body:`{"pid":${mas}}`})
 
         algo.then((res)=>{
             res.json().then((obj)=>{

@@ -8,8 +8,8 @@ interface Params{
 }
 
 function ProcessSim({back_button}:Params){
-    const HOST = process.env.GO_HOST;
-const PORT = process.env.GO_PORT;
+    
+
     let [nodes,set_nodes] = useState([] as any[])
     let [edges,set_edges] = useState([] as any[])
 
@@ -24,14 +24,14 @@ const PORT = process.env.GO_PORT;
     let [trgt_pid,set_trgt_pid] = useState(0)
     let [last_node,set_last_node] = useState(node1)
     let new_action = ()=>{
-        let algo = fetch(`http://${HOST}:${PORT}/new_process`)
+        let algo = fetch(`http://127.0.0.1:1200/new_process`)
         algo.then((res)=>{
             res.json().then((obj)=>{
                 set_trgt_pid(obj.Pid)
                 console.log(obj.Pid)
-                fetch(`http://${HOST}:${PORT}/save_op_process`,{ method:'POST', body:`{"pid":${obj.Pid},"operation":1}`})
-                fetch(`http://${HOST}:${PORT}/save_op_process`,{ method:'POST', body:`{"pid":${obj.Pid},"operation":2}`})
-                fetch(`http://${HOST}:${PORT}/save_op_process`,{ method:'POST', body:`{"pid":${obj.Pid},"operation":3}`})
+                fetch(`http://127.0.0.1:1200/save_op_process`,{ method:'POST', body:`{"pid":${obj.Pid},"operation":1}`})
+                fetch(`http://127.0.0.1:1200/save_op_process`,{ method:'POST', body:`{"pid":${obj.Pid},"operation":2}`})
+                fetch(`http://127.0.0.1:1200/save_op_process`,{ method:'POST', body:`{"pid":${obj.Pid},"operation":3}`})
                 node3.color = "red"
                 set_nodes([node1,node2,node3])
                 edge2.color = 'red'
@@ -41,7 +41,7 @@ const PORT = process.env.GO_PORT;
         })
     }
     let stop_action = ()=>{
-        fetch(`http://${HOST}:${PORT}/save_op_process`,{ method:'POST', body:`{"pid":${trgt_pid},"operation":2}`})
+        fetch(`http://127.0.0.1:1200/save_op_process`,{ method:'POST', body:`{"pid":${trgt_pid},"operation":2}`})
         // 3->2
         edge2.color = ""
         edge3.color = 'red'
@@ -55,7 +55,7 @@ const PORT = process.env.GO_PORT;
 
     }
     let resume_action = ()=>{
-        fetch(`http://${HOST}:${PORT}/save_op_process`,{ method:'POST', body:`{"pid":${trgt_pid},"operation":3}`})
+        fetch(`http://127.0.0.1:1200/save_op_process`,{ method:'POST', body:`{"pid":${trgt_pid},"operation":3}`})
         // 2->3
         edge2.color = "red"
         edge3.color = 'blue'
@@ -68,7 +68,7 @@ const PORT = process.env.GO_PORT;
         
     }
     let kill_action = ()=>{
-        fetch(`http://${HOST}:${PORT}/save_op_process`,{ method:'POST', body:`{"pid":${trgt_pid},"operation":4}`})
+        fetch(`http://127.0.0.1:1200/save_op_process`,{ method:'POST', body:`{"pid":${trgt_pid},"operation":4}`})
         edge3.color = ""
         edge2.color = ""
         edge3.hidden = hidedge3

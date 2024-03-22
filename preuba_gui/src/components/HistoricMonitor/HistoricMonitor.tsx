@@ -10,14 +10,14 @@ interface Params{
 }
 
 function HistoricMonitor({back_button}:Params){
-    const HOST = process.env.GO_HOST;
-    const PORT = process.env.GO_PORT;
+    
+    
     let [ram_data,set_ram_data] = useState([0])
     let [cpu_data,set_cpu_data] = useState([0])
     let [labels_list,set_labels_list] = useState([""])
     useEffect(() => {
         
-        let algo = fetch(`http://${HOST}:${PORT}/historical`)
+        let algo = fetch(`http://127.0.0.1:1200/historical`)
         algo.then((res)=>{
             res.json().then((obj)=>{
                 let rams = [] 

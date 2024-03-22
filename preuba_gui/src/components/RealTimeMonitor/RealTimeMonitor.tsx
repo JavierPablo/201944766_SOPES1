@@ -10,14 +10,14 @@ interface Params{
 }
 
 function RealTimeMonitor({back_button}:Params){
-    const HOST = process.env.GO_HOST;
-const PORT = process.env.GO_PORT;
+    
+
     let [ram_data,set_ram_data] = useState([25,75])
     let [cpu_data,set_cpu_data] = useState([40,60])
     useEffect(() => {
         // Use setTimeout to update the message after 2000 milliseconds (2 seconds)
         const timeoutId = setTimeout(() => {
-            let algo = fetch(`http://${HOST}:${PORT}/realtime`)
+            let algo = fetch(`http://127.0.0.1:1200/realtime`)
             algo.then((res)=>{
                 res.json().then((obj)=>{
                     

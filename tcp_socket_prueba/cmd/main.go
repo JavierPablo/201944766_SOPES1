@@ -7,8 +7,6 @@ import (
 	"io"
 	"math/rand/v2"
 	"net/http"
-	"os"
-
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -149,14 +147,7 @@ type ResourceUsage struct{
 }
 
 func get_db_instance()*sql.DB{
-	dbHost := os.Getenv("DB_HOST")
-    dbPort := os.Getenv("DB_PORT")
-    dbUser := os.Getenv("DB_USER")
-    dbPass := os.Getenv("DB_PASS")
-    dataSourceName := fmt.Sprintf("%s:%s@tcp(%s:%s)/prueba_go",dbUser,dbPass, dbHost, dbPort)
-	fmt.Println(dataSourceName)
-	db, err := sql.Open("mysql", dataSourceName)
-	// db, err := sql.Open("mysql", "JavierRoot:1667@tcp(127.0.0.1:3306)/prueba_go")
+	db, err := sql.Open("mysql", "JavierRoot:1667@tcp(127.0.0.1:3306)/prueba_go")
     // if there is an error opening the connection, handle it
     if err != nil {panic(err.Error())}
 	return db
