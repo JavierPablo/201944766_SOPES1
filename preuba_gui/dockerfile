@@ -1,0 +1,16 @@
+FROM node:latest
+
+WORKDIR /frontend
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+ENV GO_PORT=1200
+ENV GO_HOST=localhost 
+
+EXPOSE 3000
+
+CMD [ "npm", "start" ]

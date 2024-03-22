@@ -1,0 +1,18 @@
+.square-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 50%;
+    cursor: pointer;
+    color: brown;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.square-button:hover{
+    animation: fade 3s;
+}
+@keyframes fade {
+    100%{
+        opacity: 100%;
+    }
+}

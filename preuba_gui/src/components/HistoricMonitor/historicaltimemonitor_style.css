@@ -1,0 +1,22 @@
+.realtimemonitor-page{
+    background-color: rgb(124, 108, 136);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+    align-items: start;
+    /* justify-content: center; */
+}
+.realtimemonitor-page button{
+    width: 5%;
+    height: 5%;
+}
+.realtimemonitor-page .container-realtimemonitor{
+    background-color: rgb(12, 20, 22);
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10%;
+}

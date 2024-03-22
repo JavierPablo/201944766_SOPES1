@@ -1,0 +1,37 @@
+services:
+  service1:
+    image: javierpablo/proyecto1_db_mysql:latest
+    ports:
+      - 1200:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=1667
+    container_name: db_proyecto1
+    volumes:
+      - db_volume:/var/lib/mysql
+
+  service2:
+    image: javierpablo/proyecto1_frontend_react:latest
+    ports:
+      - 80:3000
+    environment:
+      - GO_HOST=localhost #127.0.0.1
+      - GO_PORT=1400
+    container_name: front_proyecto1
+    depends_on:
+      - service3
+  
+  service3:
+    image: javierpablo/proyecto1_api_go:latest
+    ports:
+      - 1400:1200
+    environment:
+      - DB_USER=root
+      - DB_PASS=1667
+      - DB_HOST=localhost #127.0.0.1
+      # - DB_PORT=1200
+      - DB_PORT=3306
+    container_name: backend_proyecto1
+    depends_on:
+      - service1
+volumes:
+  db_volume:

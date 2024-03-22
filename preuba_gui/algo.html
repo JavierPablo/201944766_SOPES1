@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Pie Chart using Chart.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <canvas id="myPieChart" width="400" height="400"></canvas>
+
+    <script>
+        // Define data for the pie chart
+        var data = {
+            labels: ["Category A", "Category B", "Category C"],
+            datasets: [{
+                data: [30, 20, 50],
+                backgroundColor: ["red", "green", "blue"]
+            }]
+        };
+
+        // Define options for the pie chart
+        var options = {
+            responsive: false,
+            maintainAspectRatio: false,
+            legend: {
+                position: 'top',
+            }
+        };
+
+        // Create a new pie chart
+        var ctx = document.getElementById('myPieChart').getContext('2d');
+        var myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: data,
+            options: options
+        });
+    </script>
+</body>
+</html>
