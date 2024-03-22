@@ -28,7 +28,6 @@ services:
       - DB_USER=root
       - DB_PASS=1667
       - DB_HOST=localhost #127.0.0.1
-      # - DB_PORT=1200
       - DB_PORT=3306
     container_name: backend_proyecto1
     depends_on:
